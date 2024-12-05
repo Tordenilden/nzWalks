@@ -1,0 +1,13 @@
+th,td{
+  size: 200px;
+  text-align: left;
+  /* border-style: solid; */
+  border-bottom: 1px solid rgb(202, 60, 162);
+}
+td {
+  padding-left: 10px;
+}
+
+table{
+  width:800px
+}

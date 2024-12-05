@@ -1,6 +1,40 @@
 <p>user works!</p>
 Her er alle vores Users <br>
+<table>
+  <thead><tr>
+    <th><label for="firstName">Firstname</label></th>
+    <th><label for="lastName"> LastName</label></th>
+    <th><label for="email"> eMaIl</label></th>
+    <th><label for="postalCodeId">PostalCODEid</label></th>
+  </tr></thead><tbody>
 @for (userObj of userList; track $index) {
-{{userObj.firstName}}
-
+<tr>
+  <td>{{userObj.firstName}}</td>
+  <td>{{userObj.lastName}}</td>
+  <td>{{userObj.email}}</td>
+  <td>{{userObj.postalCodeId}}</td>
+  <button (click)="JuleNisse(userObj.userId)">X</button>
+  <!-- hvordan finder vi ud af det enkelte obj / index whatever... -->
+</tr>
 }
+</tbody>
+</table>
+<!-- Firstname</label> {{userObj.firstName}}
+<label for="lastName">    lastNAme</label> {{userObj.lastName}}
+<label for="email">       email</label> {{userObj.email}}
+<label for="postalCodeId">postalCodeId</label> {{userObj.postalCodeId}} -->
+
+<br><br>
+
+<!-- oprette en Form - hvordan er det nu?? -->
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+<!-- her skal vi oprette vores HTML -->
+<!-- 4 input felter, postalcode skal det være et søgefelt -->
+<input type="text" placeholder="firstName" name="firstName" id="firstName" formControlName="firstName">
+<input type="text" placeholder="lastName"  name="lastName" id="lastName" formControlName="lastName">
+<input type="text" placeholder="email"  name="email" id="email" formControlName="email">
+<input type="text" placeholder="postalCodeId"  name="postalCodeId" id="postalCodeId" formControlName="postalCodeId">
+<button type="submit">click me</button>
+</form>
+

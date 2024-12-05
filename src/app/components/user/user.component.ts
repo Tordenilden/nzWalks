@@ -3,11 +3,12 @@ import { User } from '../../models/user';
 import { UserService } from '../../service/user.service';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   providers: [UserService],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
@@ -28,10 +29,41 @@ export class UserComponent {
 //version2
 userList: User[] = [];
 
+// HTML Forms - Reactive Forms
+userForm:FormGroup = new FormGroup({
+  // userId : new FormControl(),
+  firstName : new FormControl(), // validators
+  lastName : new FormControl(),
+  email : new FormControl(),
+  postalCodeId : new FormControl(),
+  // genre: new FormGroup({
+  // })
+});
+
+onSubmit():void{
+  console.log(this.userForm.get('firstName')?.value);
+}
+
+JuleNisse(idToDelete:number):void{
+  //invoke our delete method from our service
+  console.log("deleting");
+  console.log(idToDelete);
+
+
+ // this.service.delete(1);
+ // this.service.delete(idToDelete
+
+}
+
+hat(temp:string):void{
+}
 
 
 // what name does the service have? is it a Nisse?
 ngOnInit(){
+this.hat("test");
+// this.hat(test);
+
   // console.log(this.getall());
   // this.userList = this.service.getall();
   // console.log(this.userList);
@@ -45,7 +77,6 @@ ngOnInit(){
   this.service.getall3().subscribe(
     data=>{
       console.log("test");
-
       this.userList=data;
       console.log(this.userList);
     }

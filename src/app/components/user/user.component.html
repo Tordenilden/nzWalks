@@ -38,3 +38,11 @@ Her er alle vores Users <br>
 <button type="submit">click me</button>
 </form>
 
+<select (change)="dropDownOnChange($event)">
+  @for (city of cityNames; track $index) {
+    <option [value]="city" >{{city}}
+    </option>
+  }
+</select>
+
+<img [src]="imagePath" alt="Description of the image">

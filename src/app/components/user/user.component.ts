@@ -3,7 +3,7 @@ import { User } from '../../models/user';
 import { UserService } from '../../service/user.service';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
@@ -28,11 +28,14 @@ export class UserComponent {
 
 //version2
 userList: User[] = [];
+cityNames: string[] = ["Aalborg", "Aarhus", "Odense", "København"];
+imagePath = '/img/stars.png';
+
 
 // HTML Forms - Reactive Forms
 userForm:FormGroup = new FormGroup({
   // userId : new FormControl(),
-  firstName : new FormControl(), // validators
+  firstName : new FormControl('',[Validators.required]), // validators
   lastName : new FormControl(),
   email : new FormControl(),
   postalCodeId : new FormControl(),
@@ -42,6 +45,11 @@ userForm:FormGroup = new FormGroup({
 
 onSubmit():void{
   console.log(this.userForm.get('firstName')?.value);
+  if(this.userForm.valid){
+    console.log("Form is valid");
+    console.log(this.userForm.value);
+  }
+    // this.service.create(this.userForm.value).subscribe(data=>console.log(data));
 }
 
 JuleNisse(idToDelete:number):void{
@@ -104,5 +112,11 @@ getall():User[]{ return this.userList; }
   //    Email
   //     PostalCodeId
   // }
+
+  /***** DROP DOWN CLICK!! */
+  dropDownOnChange(event : any){
+    console.log("clicked");
+    console.log(event.target.value);
+  }
 
 }
